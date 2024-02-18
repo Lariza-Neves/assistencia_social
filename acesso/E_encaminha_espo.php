@@ -41,7 +41,26 @@
 </head>
 
 <body>
-    
+<?php
+			 require '..\conexao.php';
+			if(isset($_GET)){
+				$id = $_GET["id"];
+				$sqlConsulta = "SELECT * FROM revelacao_espontanea WHERE id = '$id'";
+			$res = mysqli_query($conexao, $sqlConsulta);
+
+			$espo_ = mysqli_fetch_assoc($res);
+
+			/*if("$usuario[permissao]" == "1" )
+			{
+				$permissao = "Administrador";
+			}
+			else
+			{
+				$permissao = "Normal";
+			}*/
+
+			}
+		?>
     <div class="container-xxl position-relative bg-white d-flex p-1">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -113,7 +132,7 @@
  
                     <div id="top" class="row">
                         <div class="titulo">
-                            <h2>Registros da Revelação Espontânea</h2>
+                            <h2><?php echo "$espo_[nome]"?></h2>
                         </div>
                          <!-- <div class="box-search">
                             <input type="search" class="form-control w-25" placeholder="Pesquisar" id="pesquisar">
@@ -122,9 +141,10 @@
                             </svg>
                             </button>
                         </div>  -->
-                        
+                    
                         <div class="col-sm-3"> <br>
-                            <a href="espontanea.php" class="btn btn-primary pull-right h2">Adicionar registro</a>
+                            <a href="encaminha_espo.php" class="btn btn-primary pull-right h2">Adicionar Encaminhamento</a>
+                            
                         </div>
                     </div> 
                      
@@ -139,8 +159,9 @@
                             <thead>
                                 <tr>
                                     <th>Data</th>
-                                    <th>Nome</th>
-                                    <th>Rede de Atendimento</th>
+                                    <th>Recebido</th>
+                                    <th>Encaminhado</th>
+                                    <th>Situação</th>
                                     <th class="actions">Ações</th>
                                 </tr>
                             </thead>
@@ -149,32 +170,28 @@
                                     <?php
                                                 require '..\conexao.php';
                                                     
-                                                    $sql = "SELECT * from revelacao_espontanea";				
+                                                    $sql = "SELECT * from encaminhamento_espo";				
                                                                                                                                                     
                                                     $resultado = mysqli_query($conexao, $sql);
-
-                                                    // if(!empty($_GET['search'])){
-                                                    //     echo  "<script>alert('tem!');</script>";
-                                                    // }
-                                                    // else{
-                                                    //     $sql= "SELECT * FROM revelacao_espontane"
-                                                    // }
                                                     
-                                                    while ($espontanea = mysqli_fetch_array($resultado)){
-                                                        $aux1 = strtotime($espontanea["data_revelacao"]);
+                                                    
+                                                    while ($espo_encam = mysqli_fetch_array($resultado)){
+                                                        $aux1 = strtotime($espo_encam["data_encaminha"]);
                                                         $data = date('d/m/Y', $aux1);
 
                                                         echo "<tr align='left'>
+                                                        
                                                             <td>$data</td>
-                                                            <td> $espontanea[nome]</td>
-                                                            <td> $espontanea[rede_atendimento]</td>
+                                                            <td> $espo_encam[local_recebido]</td>
+                                                            <td> $espo_encam[local_encaminha]</td>
+                                                            <td> $espo_encam[situacao]</td>
                                                             <td class='actions'>
-                                                            <a class='btn btn-primary btn-xs' href='ver_espo.php?id=$espontanea[id]'>Visualizar</a>
-                                                            <a class='btn btn-warning btn-xs' href='espontaneaedit.php?id=$espontanea[id]'>Editar</a>
-                                                            <a class='btn btn-danger btn-xs' href='deleta_espo.php?id=$espontanea[id]'>Excluir</a>
-                                                            <a class='btn btn-success btn-xs'  href='E_encaminha_espo.php?id=$espontanea[id]'>Encaminhamento</a>
+                                                            <a class='btn btn-primary btn-xs' href='ver_encam_espo.php?id=$espo_encam[id]'>Visualizar</a>
+                                                            <a class='btn btn-warning btn-xs' href='.php?id=$espo_encam[id]'>Editar</a>
+                                                            <a class='btn btn-danger btn-xs' href='.php?id=$espo_encam[id]'>Excluir</a>
                                                             </td>
                                                             </tr>	
+                                                            
                                                         ";
                                                     }
                                                     
@@ -225,7 +242,7 @@
     });
     function searchData()
     {
-        window.location ="Exibir_espontanea.php?search="+search.value;
+        window.location ="Exibir_espo_encam.php?search="+search.value;
     }
 </script> 
 

@@ -7,7 +7,7 @@ body{
 .main-login{ 
     width: 100vw; 
     height: 100vh;
-    background: #C3CBE0; 
+    background: #adc4ff; 
     display: flex; 
     justify-content: center;
     align-items: center; 
@@ -24,7 +24,7 @@ body{
 }
 .left-login >h1{
     font-size: 3vw;
-    color: #7b5bad;
+    color: #a0cae6;
 }
 .left-login-img{
     width: 35vw;
@@ -47,7 +47,7 @@ body{
     align-items: center;
     flex-direction: column;
     padding: 30px 35px;
-    background: #a28ec0; 
+    background: #5e63b1; 
     border-radius: 20px; 
     box-shadow: 0px 10px 40px rgb(0, 0, 0); 
 }
@@ -93,7 +93,7 @@ body{
     font-weight: 800;
     letter-spacing: 3px;
     color:#fff6f6;
-    background: #697a9e;
+    background: #c1cce5;
     cursor: pointer;
     box-shadow: 0px 4px 40px -12px #000000;
 }

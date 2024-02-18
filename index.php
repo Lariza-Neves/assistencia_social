@@ -21,7 +21,7 @@ if (isset($_GET, $_GET['aut']))
 <body>
      <div class= "main-login"> 
         <div class="left-login">  
-            <img src="css/financas.svg" class="left-login-img" alt="...">
+          <!-- <img src="css/" class="left-login-img" alt="...">-->
         </div>
             <div class="right-login"> 
                 <form class="right-login" action="verifica.php" method="post">

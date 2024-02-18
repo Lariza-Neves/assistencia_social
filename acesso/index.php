@@ -56,7 +56,15 @@
                     <a href="especializada.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Especializada</a>
                     <a href="Exibir_espontanea.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Exibir Espontânea</a>
                     <a href="Exibir_especializada.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Exibir Especializada</a>
+                    <a href="#" class="nav-item nav-link" class="" data-bs-toggle="dropdown">
+                        <span class="" class=""><i class="fa fa-th me-2"></i>Encaminhamento</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                        <a href="mencaminha_espo.php" class="dropdown-item">Espontânea</a>
+                        <a href="mencaminha_espe.php" class="dropdown-item">Especializada</a>
+                    </div>
                     <a href="usuario.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Usuários</a>
+                    
                     
                 </div>
             </nav>

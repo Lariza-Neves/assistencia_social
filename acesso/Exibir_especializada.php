@@ -56,6 +56,7 @@
                     <a href="especializada.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Especializada</a>
                     <a href="Exibir_espontanea.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Exibir Espontânea</a>
                     <a href="Exibir_especializada.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Exibir Especializada</a>
+                    <a href="encaminhamento.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Encaminhamento</a>
                     <a href="usuario.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Usuários</a>
                     
                 </div>
@@ -98,12 +99,10 @@
             <div id="main" class="container-fluid" style="margin-top: 30px"> 
  
                     <div id="top" class="row">
-                        <div class="col-sm-8">
+                        <div>
                             <h2>Registros das Fichas de Escuta Especializada</h2>
                         </div>
-                        <div class="col-sm-6">	
-                        </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <a href="especializada.php" class="btn btn-primary pull-right h2">Adicionar registro</a>
                         </div>
                     </div> <!-- /#top -->
@@ -132,14 +131,17 @@
                                                     
                                                     
                                                     while ($especializada_ = mysqli_fetch_array($resultado)){
+                                                        $aux1 = strtotime($especializada_["data"]);
+                                                        $data = date('d/m/Y', $aux1);
                                                         echo "<tr align='left'>
-                                                            <td> $especializada_[data]</td>
+                                                            <td>$data</td>
                                                             <td> $especializada_[nome_crianca]</td>
                                                             <td> $especializada_[orgao]</td>
                                                             <td class='actions'>
                                                             <a class='btn btn-primary btn-xs' href='ver_espe.php?id=$especializada_[id]'>Visualizar</a>
                                                             <a class='btn btn-warning btn-xs' href='especializadaedit.php?id=$especializada_[id]'>Editar</a>
                                                             <a class='btn btn-danger btn-xs'  href='deleta_espe.php?id=$especializada_[id]'>Excluir</a>
+                                                            <a class='btn btn-success btn-xs'  href='encaminhamento_espe.php?id=$especializada_[id]'>Encaminhamento</a>
                                                             </td>
                                                             </tr>	
                                                         ";

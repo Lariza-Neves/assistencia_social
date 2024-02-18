@@ -58,18 +58,6 @@
 </head>
 
 <body>
-<?php
-			 require '..\conexao.php';
-			if(isset($_GET)){
-				$id = $_GET["id"];
-				$sqlConsulta = "SELECT * FROM revelacao_espontanea WHERE id = '$id'";
-			$res = mysqli_query($conexao, $sqlConsulta);
-
-			$revelacao = mysqli_fetch_assoc($res);
-
-			}
-		?>
-
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -137,152 +125,70 @@
                 <main>
                     <div class="py-5 text-center">
                     <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-                    <h2>FICHA DE NOTIFICAÇÃO DE REVELAÇÃO ESPONTÂNEA</h2>
+                    <h2>ENCAMINHAMENTO</h2>
                     <p class="lead">...</p>
                     </div>
                     
                     <div class="col-md-7 col-lg-8">
-                        <h4 class="mb-3">REVELAÇÃO ESPONTÂNEA</h4>
-                        <form class="needs-validation" action="altera_espo.php" novalidate method="post" enctype='multipart/form-data'>
-                        <input type="hidden" name="id" value="<?php echo "$revelacao[id]"?>"/>
+                        <h4 class="mb-3">NOVO ENCAMINHAMENTO</h4>
+                        <form class="needs-validation" action="C_encaminha_espe.php" novalidate method="post" enctype='multipart/form-data'>
+
                         <div class="row g-3">
-                            <div class="col-sm-6">
-                            <label for="data_revelacao" class="form-label">Data da Revelação</label>
-                            <input type="date" class="form-control" id="data_revelacao" name="data_revelacao" required value="<?php echo "$revelacao[data_revelacao]"?>">
-                            <div class="invalid-feedback">
-                                Valid first name is required.
-                            </div>
-                            </div>
 
-                            
+                            <div class="col-4">
+                            <label for="number" class="form-label">ID da Revelação:</label>
+                            <div class="input-group ">
+                                <input type="text" class="form-control" id=".." name="..">
+                            </div>
+                            </div>
 
                             <div class="col-12">
-                            <label for="nome" class="form-label">Nome</label>
+                            <label for="nome" class="form-label">Nome:</label>
+                            <div class="input-group ">
+                                <input type="text" class="form-control" id="nome" name="nome">
+                            </div>
+                            </div>
+
+                            <div class="col-6">
+                            <label for="data_encaminha" class="form-label">Data do Encaminhamento:</label>
                             <div class="input-group has-validation">
-                                <input type="text" class="form-control" id="nome" name="nome" required value="<?php echo "$revelacao[nome]"?>">
-                                <div class="invalid-feedback">
-                                    Your username is required.
-                                </div>
+                                <input type="date" class="form-control" id="data_encaminha" name="data_encaminha" required>
                             </div>
                             </div>
-
 
                             <div class="col-12">
-                            <p class="mb-3">Sexo</p>
+                            <label for="local_recebido" class="form-label">Local do Recebimento:</label>
+                            <div class="input-group has-validation">
+                                <input type="text" class="form-control" id="local_recebido" name="local_recebido" required>
+                            </div>
+                            </div>
+
+                            <div class="col-12">
+                            <label for="local_encaminha" class="form-label">Encaminhar para:</label>
+                            <div class="input-group has-validation">
+                                <input type="text" class="form-control" id="local_encaminha" name="local_encaminha" required>
+                            </div>
+                            </div>
+
+                            <div class="col-12">
+                            <p class="mb-3">Situação:</p>
                             <div class="form-check">
-                                <input id="sexo" name="sexo" type="radio" class="form-check-input" name="sexo"  required value="Masculino" <?php if ("$revelacao[sexo]" == "Masculino") {print "checked";}?>>
-                                <label class="form-check-label" for="sexo">Masculino</label>
+                                <input id="situacao" name="situacao" type="radio" class="form-check-input" name="situacao" required value="Pendente">
+                                <label class="form-check-label" for="situacao">Pendente</label>
                             </div>
-                            
+
                             <div class="form-check">
-                                <input id="sexo" name="sexo" type="radio" class="form-check-input" name="sexo" required value="Feminino" <?php if ("$revelacao[sexo]" == "Feminino") {print "checked";}?>>
-                                <label class="form-check-label" for="sexo">Feminino</label>
+                                <input id="situacao" name="situacao" type="radio" class="form-check-input" name="situacao" required value="Resolvido">
+                                <label class="form-check-label" for="situacao">Resolvido</label>
                             </div>
                             </div>
 
                             
-                            <div class="col-12">
-                                <div class="col-sm-6">
-                                        <label for="data_nascimento" class="form-label">Data de Nascimento</label>
-                                        <input type="date" class="form-control" id="data_nascimento" name="data_nascimento"  required  value="<?php echo "$revelacao[data_nascimento]"?>">
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                            <label for="idade" class="form-label">Idade</label>
-                            <div class="input-group has-validation">
-                                <input type="number" class="form-control" id="idade" name="idade"  required value="<?php echo "$revelacao[idade]"?>">
-                            </div>
-                            </div>
-
-                            <div class="col-12">
-                            <label for="com_deficiencia" class="form-label">Com Deficiencia</label>
-                            <div class="input-group has-validation">
-                                <input type="text" class="form-control" id="com_deficiencia" name="com_deficiencia" required value="<?php echo "$revelacao[com_deficiencia]"?>">
-                            </div>
-                            </div>
-
-                            <div class="col-12">
-                            <label for="filiacao" class="form-label">Filiação</label>
-                            <div class="input-group has-validation">
-                                <input type="text" class="form-control" id="filiacao" name="filiacao" required value="<?php echo "$revelacao[filiacao]"?>">
-                            </div>
-                            </div>
-
-
-
-                            <div class="col-12">
-                            <label for="responsavel_legal" class="form-label">Responsável legal</label>
-                            <div class="input-group has-validation">
-                                <input type="text" class="form-control" id="responsavel_legal" name="responsavel_legal" required value="<?php echo "$revelacao[responsavel_legal]"?>">
-                            </div>
-                            </div>
-
-                            <div class="col-12">
-                            <label for="endereco" class="form-label">Endereço</label>
-                            <div class="input-group has-validation">
-                                <input type="text" class="form-control" id="endereco" name="endereco"  required value="<?php echo "$revelacao[endereco]"?>">
-                            </div>
-                            </div>  
-
-                        
-
-                            <div class="col-md-5">
-                            <label for="cidade" class="form-label">Cidade</label>
-                            <select class="form-select" id="cidade" name="cidade" required>
-                                <option value="<?php echo "$revelacao[cidade]"?>"><?php echo "$revelacao[cidade]"?></option>
-                            </select>
-                            <div class="invalid-feedback">
-                                Please select a valid country.
-                            </div>
-                            </div>
-
-                            <div class="col-12">
-                            <label for="telefone" class="form-label">Telefone</label>
-                            <div class="input-group has-validation">
-                                <input type="text" name="telefone" id="telefone" class="form-control" onkeyup="formatarTelefone(this)" maxlength="11" required value="<?php echo "$revelacao[telefone]"?>">
-                            </div>
-                            </div>
-
-                            
-                            <div class="col-12">
-                            <label for="r_atend" class="form-label">Rede de Atendimento</label>
-                            <div class="input-group has-validation">
-                                <input type="text" class="form-control" id="r_atend" name="rede_atendimento" required value="<?php echo "$revelacao[rede_atendimento]"?>">
-                            </div>
-                            </div>
-
-                            <div class="col-12">
-                            <label for="violacao" class="form-label">Violação</label>
-                            <div class="input-group has-validation">
-                                <input type="text" class="form-control" id="violacao" name="violacao" required value="<?php echo "$revelacao[violacao]"?>">
-                                <div class="invalid-feedback">
-                                    Your username is required.
-                                </div>
-                            </div>
-
-
-                            </div>
-                            <div class="col-12">
-                            <label for="descricao" class="form-label">Descrição</label>
-                            <div class="input-group has-validation">
-                                <textarea type="text" class="form-control" id="descricao" name="descricao" required><?php echo "$revelacao[descricao]"?></textarea>
-                            </div>
-                            </div>
-                           
-                        <div class="row gy-3">
-
-                            
-
-                            
-
-                            
-                            </div>
                         </div>
 
                         <hr class="my-4">
 
-                        <button class="w-100 btn btn-primary btn-lg" type="submit">Atualizar</button>
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">Guardar</button>
                         </form>
                     </div>
                     </div>
@@ -297,7 +203,16 @@
                     </ul>
                 </footer>
                 </div>
+
+
+            <!-- Footer Start -->
+            
+            <!-- Footer End -->
         </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
@@ -317,24 +232,24 @@
 
     <script>
         (function () {
-            'use strict'
+        'use strict'
 
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.querySelectorAll('.needs-validation')
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
 
-            // Loop over them and prevent submission
-            Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                    }
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+                }
 
-                    form.classList.add('was-validated')
-                }, false)
-                })
-            })()
+                form.classList.add('was-validated')
+            }, false)
+            })
+        })()
     </script>
 
     <script>
